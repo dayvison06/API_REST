@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 class BookController extends Controller
 {
     public function getBooks(){
-        $books = Book::all();
+        $books = Book::all(); // Forma para pegar todos os dados
+
         return response()->json($books);
     }
 

@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+// Interface Tymon JWT
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -41,4 +43,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // Obtenha o identificador que será armazenado na declaração de assunto do JWT
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    //Retorne uma matriz de valores-chave, contendo quaisquer declarações personalizadas a serem adicionadas ao JWT.
+    public function getJWTCustomClaims() : array
+    {
+        return [];
+    }
 }
