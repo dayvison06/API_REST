@@ -1,0 +1,480 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My First API - Books",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "Autenticação do usuário",
+                "operationId": "dcf90ce65219b0ad51fc32e9f7f69843",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "email"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Senha",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "password"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Login bem-sucedido"
+                    },
+                    "401": {
+                        "description": "Credenciais inválidas"
+                    }
+                }
+            }
+        },
+        "/api/v1/books": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Exibir livros",
+                "operationId": "9cff53b1ddf49620becb8ee901be484b",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token de autenticação no formato 'Bearer {token}'",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de livros",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "description": "ID do livro",
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "description": "Título do livro",
+                                                "type": "string"
+                                            },
+                                            "autor": {
+                                                "description": "Autor do livro",
+                                                "type": "string"
+                                            },
+                                            "data_publicacao": {
+                                                "description": "Data de publicação do livro",
+                                                "type": "string",
+                                                "format": "date"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não autorizado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Atualizar informações do livro",
+                "operationId": "89e2db48259e0a9c1257501f461a3931",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token de autenticação no formato 'Bearer {token}'",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "Id": {
+                                        "description": "ID do livro",
+                                        "type": "integer"
+                                    },
+                                    "nome": {
+                                        "description": "Título do livro",
+                                        "type": "string"
+                                    },
+                                    "autor": {
+                                        "description": "Autor do livro",
+                                        "type": "string"
+                                    },
+                                    "data_publicacao": {
+                                        "description": "Data de publicação do livro",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Informações do livro atualizada!",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "description": "ID do livro",
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "description": "Título do livro",
+                                                "type": "string"
+                                            },
+                                            "autor": {
+                                                "description": "Autor do livro",
+                                                "type": "string"
+                                            },
+                                            "data_publicacao": {
+                                                "description": "Data de publicação do livro",
+                                                "type": "string",
+                                                "format": "date"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não autorizado"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Cadastrar livro",
+                "operationId": "e034fd3b515b09d3e9ce6be01ef154a0",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token de autenticação no formato 'Bearer {token}'",
+                        "required": true,
+                        "schema": {
+                            "type": "bearer"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nome",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "autor",
+                        "in": "query",
+                        "description": "Autor",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "data_publicacao",
+                        "in": "query",
+                        "description": "Data de publicacao",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Livro adicionado a biblioteca",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "description": "ID do livro",
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "description": "Título do livro",
+                                                "type": "string"
+                                            },
+                                            "autor": {
+                                                "description": "Autor do livro",
+                                                "type": "string"
+                                            },
+                                            "data_publicacao": {
+                                                "description": "Data de publicação do livro",
+                                                "type": "string",
+                                                "format": "date"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não autorizado"
+                    }
+                }
+            }
+        },
+        "/api/v1/book{id}": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Exibir livro",
+                "operationId": "354f1e50a0ab9ae94fb4afd335679e05",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token de autenticação no formato 'Bearer {token}'",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ID",
+                        "in": "query",
+                        "description": "ID do livro desejado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Livro correspondente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "description": "ID do livro",
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "description": "Nome do livro",
+                                                "type": "string"
+                                            },
+                                            "autor": {
+                                                "description": "Autor do livro",
+                                                "type": "string"
+                                            },
+                                            "data_publicacao": {
+                                                "description": "Data de publicação do livro",
+                                                "type": "string",
+                                                "format": "date"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não autorizado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Remover livro",
+                "operationId": "ef1cf4838510391199c42e27d6e6c426",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Token de autenticação no formato 'Bearer {token}'",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ID",
+                        "in": "query",
+                        "description": "ID do livro desejado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Livro excluído",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "description": "ID do livro",
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "description": "Nome do livro",
+                                                "type": "string"
+                                            },
+                                            "autor": {
+                                                "description": "Autor do livro",
+                                                "type": "string"
+                                            },
+                                            "data_publicacao": {
+                                                "description": "Data de publicação do livro",
+                                                "type": "string",
+                                                "format": "date"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não autorizado"
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Cadastrar usuário",
+                "operationId": "6b72333a74edaccf648803c765875482",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nome",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "email"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Senha",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "password"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Usuário cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "description": "ID do usuário",
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "description": "Nome",
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "description": "Email",
+                                                "type": "string"
+                                            },
+                                            "password": {
+                                                "description": "Senha",
+                                                "type": "string",
+                                                "format": "password"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não autorizado"
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}

@@ -5,10 +5,46 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use OpenApi\Attributes as OA;
+use OpenApi\Annotations as OA;
 
 class AuthController extends Controller
 {
+
+    /**
+     * @OA\Post(
+     *     path="/api/login",
+     *     summary="Autenticação do usuário",
+     *     tags={"Login"},
+     *          @OA\Parameter(
+     *          name="email",
+     *          in="query",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string",
+     *              format="email"
+     *          ),
+     *          description="Email"
+     *      ),
+     *      @OA\Parameter(
+     *           name="password",
+     *           in="query",
+     *           required=true,
+     *           @OA\Schema(
+     *               type="string",
+     *               format="password"
+     *           ),
+     *           description="Senha"
+     *       ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Login bem-sucedido"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Credenciais inválidas"
+     *     )
+     * )
+     */
 
      // Get a JWT via given credentials.
     public function login()
