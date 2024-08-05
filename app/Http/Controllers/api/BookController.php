@@ -16,15 +16,6 @@ class BookController extends Controller
      *     path="/api/v1/books",
      *     summary="Exibir livros",
      *     tags={"Books"},
-     *     @OA\Parameter(
-     *         name="Authorization",
-     *         in="header",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string"
-     *         ),
-     *         description="Token de autenticação no formato 'Bearer {token}'"
-     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Lista de livros",
@@ -59,7 +50,8 @@ class BookController extends Controller
      *     @OA\Response(
      *         response=401,
      *         description="Não autorizado"
-     *     )
+     *     ),
+     *      security={{"bearer":{}}},
      * )
      */
 
@@ -74,15 +66,7 @@ class BookController extends Controller
      *     path="/api/v1/book{id}",
      *     summary="Exibir livro",
      *     tags={"Books"},
-     *     @OA\Parameter(
-     *         name="Authorization",
-     *         in="header",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string"
-     *         ),
-     *         description="Token de autenticação no formato 'Bearer {token}'"
-     *     ),
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *          name="ID",
      *          in="query",
@@ -126,7 +110,8 @@ class BookController extends Controller
      *     @OA\Response(
      *         response=401,
      *         description="Não autorizado"
-     *     )
+     *     ),
+     *     security={{"bearer":{}}},
      * )
      */
 
@@ -140,17 +125,8 @@ class BookController extends Controller
      *     path="/api/v1/books",
      *     summary="Cadastrar livro",
      *     tags={"Books"},
-     *          @OA\Parameter(
-     *          name="Authorization",
-     *          in="header",
-     *          required=true,
-     *          @OA\Schema(
-     *              type="bearer"
-     *          ),
-     *          description="Token de autenticação no formato 'Bearer {token}'"
-     *      ),
      *     @OA\Parameter(
-     *         name="name",
+     *         name="nome",
      *         in="query",
      *         required=true,
      *         @OA\Schema(
@@ -210,7 +186,8 @@ class BookController extends Controller
      *     @OA\Response(
      *         response=401,
      *         description="Não autorizado"
-     *     )
+     *     ),
+     *     security={{"bearer":{}}},
      * )
      */
 
@@ -218,7 +195,7 @@ class BookController extends Controller
         $validBook = $request->validate([
             'nome' => 'required|unique:books',
             'autor' => 'required',
-            'data_publicacao' => 'required',
+            'data_publicacao' => 'required|date',
         ]);
 
         Carbon::parse($validBook['data_publicacao'])->format('Y-m-d');
@@ -235,15 +212,6 @@ class BookController extends Controller
      *     path="/api/v1/books",
      *     summary="Atualizar informações do livro",
      *     tags={"Books"},
-     *          @OA\Parameter(
-     *          name="Authorization",
-     *          in="header",
-     *          required=true,
-     *          @OA\Schema(
-     *              type="string"
-     *          ),
-     *          description="Token de autenticação no formato 'Bearer {token}'"
-     *      ),
      *          @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(
@@ -304,7 +272,8 @@ class BookController extends Controller
      *     @OA\Response(
      *         response=401,
      *         description="Não autorizado"
-     *     )
+     *     ),
+     *     security={{"bearer":{}}},
      * )
      */
 
@@ -329,15 +298,6 @@ class BookController extends Controller
      *     path="/api/v1/book{id}",
      *     summary="Remover livro",
      *     tags={"Books"},
-     *     @OA\Parameter(
-     *         name="Authorization",
-     *         in="header",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string"
-     *         ),
-     *         description="Token de autenticação no formato 'Bearer {token}'"
-     *     ),
      *     @OA\Parameter(
      *          name="ID",
      *          in="query",
@@ -381,7 +341,8 @@ class BookController extends Controller
      *     @OA\Response(
      *         response=401,
      *         description="Não autorizado"
-     *     )
+     *     ),
+     *     security={{"bearer":{}}},
      * )
      */
 

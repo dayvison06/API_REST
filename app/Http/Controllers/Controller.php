@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller as BaseController;
 use OpenApi\Annotations as OA;
 
 /**
- * @OA\Info(title="My First API - Books", version="1.0")
+ * @OA\Info(title="My First API - Books", version="1.0"),
  */
 
 class Controller extends BaseController

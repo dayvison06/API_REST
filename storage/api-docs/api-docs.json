@@ -51,17 +51,6 @@
                 ],
                 "summary": "Exibir livros",
                 "operationId": "9cff53b1ddf49620becb8ee901be484b",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Token de autenticação no formato 'Bearer {token}'",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Lista de livros",
@@ -98,7 +87,12 @@
                     "401": {
                         "description": "Não autorizado"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             },
             "put": {
                 "tags": [
@@ -106,17 +100,6 @@
                 ],
                 "summary": "Atualizar informações do livro",
                 "operationId": "89e2db48259e0a9c1257501f461a3931",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Token de autenticação no formato 'Bearer {token}'",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -181,7 +164,12 @@
                     "401": {
                         "description": "Não autorizado"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -191,16 +179,7 @@
                 "operationId": "e034fd3b515b09d3e9ce6be01ef154a0",
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Token de autenticação no formato 'Bearer {token}'",
-                        "required": true,
-                        "schema": {
-                            "type": "bearer"
-                        }
-                    },
-                    {
-                        "name": "name",
+                        "name": "nome",
                         "in": "query",
                         "description": "Nome",
                         "required": true,
@@ -263,7 +242,12 @@
                     "401": {
                         "description": "Não autorizado"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             }
         },
         "/api/v1/book{id}": {
@@ -274,15 +258,6 @@
                 "summary": "Exibir livro",
                 "operationId": "354f1e50a0ab9ae94fb4afd335679e05",
                 "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Token de autenticação no formato 'Bearer {token}'",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
                     {
                         "name": "ID",
                         "in": "query",
@@ -329,7 +304,12 @@
                     "401": {
                         "description": "Não autorizado"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -338,15 +318,6 @@
                 "summary": "Remover livro",
                 "operationId": "ef1cf4838510391199c42e27d6e6c426",
                 "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Token de autenticação no formato 'Bearer {token}'",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
                     {
                         "name": "ID",
                         "in": "query",
@@ -393,7 +364,12 @@
                     "401": {
                         "description": "Não autorizado"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             }
         },
         "/api/register": {
@@ -471,6 +447,17 @@
                         "description": "Não autorizado"
                     }
                 }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearer": {
+                "type": "http",
+                "description": "Authorization token obtained from logging in.",
+                "name": "Authorization",
+                "in": "header",
+                "scheme": "bearer"
             }
         }
     },

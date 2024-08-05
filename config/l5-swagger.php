@@ -99,14 +99,15 @@ return [
          * API security definitions. Will be generated into documentation file.
         */
         'securityDefinitions' => [
-            'bearerAuth' => [
-                'type' => 'bearer',
-                'name' => 'Authorization',
-                'in' => 'header',
-                'description' => 'Autenticação Bearer token'
-            ],
-
             'securitySchemes' => [
+
+                'bearer' => [
+                    'type' => 'http',
+                    'description' => 'Authorization token obtained from logging in.',
+                    'name' => 'Authorization',
+                    'in' => 'header',
+                    'scheme' => 'bearer',
+                ],
                 /*
                  * Examples of Security schemes
                 */
@@ -203,8 +204,8 @@ return [
         /*
          * Uncomment to add constants which can be used in annotations
          */
-         'constants' => [
-         'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'http://127.0.0.1:8000/'),
-         ],
+        'constants' => [
+            'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'http://127.0.0.1:8000/'),
+        ],
     ],
 ];
