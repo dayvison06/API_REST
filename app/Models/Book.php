@@ -16,4 +16,6 @@ class Book extends Model
         'data_publicacao'
     ];
 
+    protected $dates = ['data_publicacao'];
+
 }

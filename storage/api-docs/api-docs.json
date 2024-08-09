@@ -94,19 +94,222 @@
                     }
                 ]
             },
+            "post": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Cadastrar livro",
+                "operationId": "e034fd3b515b09d3e9ce6be01ef154a0",
+                "parameters": [
+                    {
+                        "name": "nome",
+                        "in": "query",
+                        "description": "Nome",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "autor",
+                        "in": "query",
+                        "description": "Autor",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "data_publicacao",
+                        "in": "query",
+                        "description": "Data de publicacao",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Livro adicionado a biblioteca",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "description": "ID do livro",
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "description": "Título do livro",
+                                                "type": "string"
+                                            },
+                                            "autor": {
+                                                "description": "Autor do livro",
+                                                "type": "string"
+                                            },
+                                            "data_publicacao": {
+                                                "description": "Data de publicação do livro",
+                                                "type": "date",
+                                                "format": "date"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não autorizado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/book/{id}": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Exibir livro",
+                "operationId": "edf060249ce80330163785f6139b6265",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do livro desejado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Livro correspondente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "description": "ID do livro",
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "description": "Nome do livro",
+                                                "type": "string"
+                                            },
+                                            "autor": {
+                                                "description": "Autor do livro",
+                                                "type": "string"
+                                            },
+                                            "data_publicacao": {
+                                                "description": "Data de publicação do livro",
+                                                "type": "date",
+                                                "format": "date"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não autorizado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Remover livro",
+                "operationId": "5734f4f8d319c9edd9a8a0ae5c5509e9",
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "query",
+                        "description": "ID do livro desejado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Livro excluído",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "description": "ID do livro",
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "description": "Nome do livro",
+                                                "type": "string"
+                                            },
+                                            "autor": {
+                                                "description": "Autor do livro",
+                                                "type": "string"
+                                            },
+                                            "data_publicacao": {
+                                                "description": "Data de publicação do livro",
+                                                "type": "string",
+                                                "format": "date"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Não autorizado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/book/": {
             "put": {
                 "tags": [
                     "Books"
                 ],
                 "summary": "Atualizar informações do livro",
-                "operationId": "89e2db48259e0a9c1257501f461a3931",
+                "operationId": "88c6b5de112b3c13b5b2e5827328193d",
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "Id": {
+                                    "id": {
                                         "description": "ID do livro",
                                         "type": "integer"
                                     },
@@ -143,206 +346,6 @@
                                             },
                                             "name": {
                                                 "description": "Título do livro",
-                                                "type": "string"
-                                            },
-                                            "autor": {
-                                                "description": "Autor do livro",
-                                                "type": "string"
-                                            },
-                                            "data_publicacao": {
-                                                "description": "Data de publicação do livro",
-                                                "type": "string",
-                                                "format": "date"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Não autorizado"
-                    }
-                },
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            },
-            "post": {
-                "tags": [
-                    "Books"
-                ],
-                "summary": "Cadastrar livro",
-                "operationId": "e034fd3b515b09d3e9ce6be01ef154a0",
-                "parameters": [
-                    {
-                        "name": "nome",
-                        "in": "query",
-                        "description": "Nome",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "autor",
-                        "in": "query",
-                        "description": "Autor",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "data_publicacao",
-                        "in": "query",
-                        "description": "Data de publicacao",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Livro adicionado a biblioteca",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "properties": {
-                                            "id": {
-                                                "description": "ID do livro",
-                                                "type": "integer"
-                                            },
-                                            "name": {
-                                                "description": "Título do livro",
-                                                "type": "string"
-                                            },
-                                            "autor": {
-                                                "description": "Autor do livro",
-                                                "type": "string"
-                                            },
-                                            "data_publicacao": {
-                                                "description": "Data de publicação do livro",
-                                                "type": "string",
-                                                "format": "date"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Não autorizado"
-                    }
-                },
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/book{id}": {
-            "get": {
-                "tags": [
-                    "Books"
-                ],
-                "summary": "Exibir livro",
-                "operationId": "354f1e50a0ab9ae94fb4afd335679e05",
-                "parameters": [
-                    {
-                        "name": "ID",
-                        "in": "query",
-                        "description": "ID do livro desejado",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Livro correspondente",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "properties": {
-                                            "id": {
-                                                "description": "ID do livro",
-                                                "type": "integer"
-                                            },
-                                            "name": {
-                                                "description": "Nome do livro",
-                                                "type": "string"
-                                            },
-                                            "autor": {
-                                                "description": "Autor do livro",
-                                                "type": "string"
-                                            },
-                                            "data_publicacao": {
-                                                "description": "Data de publicação do livro",
-                                                "type": "string",
-                                                "format": "date"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Não autorizado"
-                    }
-                },
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            },
-            "delete": {
-                "tags": [
-                    "Books"
-                ],
-                "summary": "Remover livro",
-                "operationId": "ef1cf4838510391199c42e27d6e6c426",
-                "parameters": [
-                    {
-                        "name": "ID",
-                        "in": "query",
-                        "description": "ID do livro desejado",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Livro excluído",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "properties": {
-                                            "id": {
-                                                "description": "ID do livro",
-                                                "type": "integer"
-                                            },
-                                            "name": {
-                                                "description": "Nome do livro",
                                                 "type": "string"
                                             },
                                             "autor": {

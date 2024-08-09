@@ -63,13 +63,12 @@ class BookController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/v1/book{id}",
+     *     path="/api/v1/book/{id}",
      *     summary="Exibir livro",
      *     tags={"Books"},
-     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
-     *          name="ID",
-     *          in="query",
+     *          name="id",
+     *          in="path",
      *          required=true,
      *          @OA\Schema(
      *              type="integer"
@@ -100,7 +99,7 @@ class BookController extends Controller
      *                 ),
      *                 @OA\Property(
      *                     property="data_publicacao",
-     *                     type="string",
+     *                     type="date",
      *                     format="date",
      *                     description="Data de publicação do livro"
      *                 )
@@ -148,7 +147,8 @@ class BookController extends Controller
      *          in="query",
      *          required=true,
      *          @OA\Schema(
-     *              type="string"
+     *              type="string",
+     *              format="date"
      *          ),
      *          description="Data de publicacao"
      *      ),
@@ -176,7 +176,7 @@ class BookController extends Controller
      *                 ),
      *                 @OA\Property(
      *                     property="data_publicacao",
-     *                     type="string",
+     *                     type="date",
      *                     format="date",
      *                     description="Data de publicação do livro"
      *                 )
@@ -195,7 +195,7 @@ class BookController extends Controller
         $validBook = $request->validate([
             'nome' => 'required|unique:books',
             'autor' => 'required',
-            'data_publicacao' => 'required|date',
+            'data_publicacao' => 'required|date:d-m-Y',
         ]);
 
         Carbon::parse($validBook['data_publicacao'])->format('Y-m-d');
@@ -209,7 +209,7 @@ class BookController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/api/v1/books",
+     *     path="/api/v1/book/",
      *     summary="Atualizar informações do livro",
      *     tags={"Books"},
      *          @OA\RequestBody(
@@ -217,7 +217,7 @@ class BookController extends Controller
      *          @OA\JsonContent(
      *              type="object",
      *              @OA\Property(
-     *                  property="Id",
+     *                  property="id",
      *                  type="integer",
      *                  description="ID do livro"
      *              ),
@@ -295,7 +295,7 @@ class BookController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/v1/book{id}",
+     *     path="/api/v1/book/{id}",
      *     summary="Remover livro",
      *     tags={"Books"},
      *     @OA\Parameter(
