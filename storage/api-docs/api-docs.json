@@ -243,8 +243,8 @@
                 "operationId": "5734f4f8d319c9edd9a8a0ae5c5509e9",
                 "parameters": [
                     {
-                        "name": "ID",
-                        "in": "query",
+                        "name": "id",
+                        "in": "path",
                         "description": "ID do livro desejado",
                         "required": true,
                         "schema": {

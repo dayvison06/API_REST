@@ -115,7 +115,7 @@ class BookController extends Controller
      */
 
     public function getBookForId($id){
-        $book = Book::findorFail($id)->first();
+        $book = Book::findOrFail($id);
         return response()->json($book);
     }
 
@@ -299,8 +299,8 @@ class BookController extends Controller
      *     summary="Remover livro",
      *     tags={"Books"},
      *     @OA\Parameter(
-     *          name="ID",
-     *          in="query",
+     *          name="id",
+     *          in="path",
      *          required=true,
      *          @OA\Schema(
      *              type="integer"
@@ -349,5 +349,9 @@ class BookController extends Controller
     public function deleteBook($id){
         $book = Book::findorFail($id);
         $book->delete();
+
+        return response()->json([
+            'message' => 'Book deleted successfully'
+        ], 200);
     }
 }
