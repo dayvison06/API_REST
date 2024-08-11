@@ -1,64 +1,68 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# 📚 API REST para Gerenciamento de Livros
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![API RESTful](https://img.shields.io/badge/API-RESTful-blue)
+![Laravel](https://img.shields.io/badge/Laravel-Framework-red)
+![JWT-Auth](https://img.shields.io/badge/JWT-Auth-green)
 
-## About Laravel
+Este projeto é uma API RESTful desenvolvida em Laravel para gerenciar um catálogo de livros. A API permite adicionar, consultar, atualizar e excluir livros do banco de dados.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Tecnologias Utilizadas
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **[Laravel](https://laravel.com/)**: Framework PHP para desenvolvimento de aplicações web.
+- **[JWT-Auth](https://jwt.io/)**: Implementado para autenticação e autorização segura via JSON Web Token (JWT).
+- **[L5 Swagger](https://github.com/DarkaOnLine/L5-Swagger)**: Implementado para gerar a documentação da API.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🌐 L5 Swagger
+- `Link:` /api/documentation
 
-## Learning Laravel
+![Swagger-Panel](resources/assets/endpoints-panel.png)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 📌 Endpoints
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🔑 Autenticação
 
-## Laravel Sponsors
+- `POST /api/v1/register`: Registra um novo usuário.
+- `POST /api/v1/login`: Gera um token JWT para autenticação.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### 📖 Livros
 
-### Premium Partners
+- `GET /api/v1/books`: Retorna a lista de livros.
+- `GET /api/v1/book/{id}`: Retorna os detalhes de um livro específico.
+- `POST /api/v1/books`: Adiciona um novo livro.
+- `PUT /api/v1/book/{id}`: Atualiza os dados de um livro existente.
+- `DELETE /api/v1/book/{id}`: Exclui um livro.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## 🔐 Autenticação
 
-## Contributing
+Todos os endpoints (exceto `register` e `login`) exigem autenticação via token JWT. O token deve ser enviado no header `Authorization` no formato `Bearer {token}`.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🛠️ Instalação e Configuração
 
-## Code of Conduct
+1. Clone o repositório:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   ```bash
+   git clone https://github.com/seu-usuario/seu-repositorio.git
+   cd seu-repositorio
+   
+2. Instale as dependências:
 
-## Security Vulnerabilities
+    ```bash
+   composer install
+   
+3. Configure o arquivo .env:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   - Adicione as credenciais do banco de dados.
+   - Configure a chave JWT
+    
+    ```bash
+   php artisan jwt:secret
 
-## License
+4. Execute as migrações:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    ```bash
+   php artisan migrate
+
+5. Inicie o servidor:
+
+    ```bash
+   php artisan serve
